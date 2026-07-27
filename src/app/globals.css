@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@plugin "../../node_modules/tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Spacing Scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Radius Scale */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-full: 9999px;
+
+  /* Premium Shadows */
+  --shadow-card: 0px 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-floating: 0px 8px 30px rgba(0, 0, 0, 0.08);
+  --shadow-modal: 0px 10px 40px rgba(0, 0, 0, 0.12);
+  --shadow-dropdown: 0px 4px 15px rgba(0, 0, 0, 0.05);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+}
+
+:root {
+  /* Noir Profond - Couleur principale du fond */
+  --background: oklch(0.145 0 0);
+  /* Blanc Lait - Texte principal */
+  --foreground: oklch(0.985 0.005 90);
+  
+  /* Blanc Lait - Pour les cartes, menus, popovers (Effet 50/50) */
+  --card: oklch(0.985 0.005 90);
+  --card-foreground: oklch(0.145 0 0);
+  
+  --popover: oklch(0.985 0.005 90);
+  --popover-foreground: oklch(0.145 0 0);
+  
+  /* Orange Brique (Voutes) */
+  --primary: oklch(0.55 0.16 35);
+  --primary-foreground: oklch(0.985 0.005 90);
+  
+  /* Gris sombre pour éléments secondaires sur fond noir */
+  --secondary: oklch(0.25 0 0);
+  --secondary-foreground: oklch(0.985 0.005 90);
+  
+  --muted: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  
+  --accent: oklch(0.25 0 0);
+  --accent-foreground: oklch(0.985 0.005 90);
+  
+  --destructive: oklch(0.577 0.245 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --success: oklch(0.5 0.15 140);
+  --success-foreground: oklch(1 0 0);
+
+  --warning: oklch(0.6 0.15 70);
+  --warning-foreground: oklch(0.145 0 0);
+
+  --error: oklch(0.4 0.15 27);
+  --error-foreground: oklch(1 0 0);
+  
+  /* Bordures sur fond noir */
+  --border: oklch(0.25 0 0);
+  --input: oklch(0.25 0 0);
+  --ring: oklch(0.65 0.1 245);
+  
+  --radius: 0.75rem;
+}
+
+
+
+@layer components {
+  .container {
+    @apply w-full max-w-7xl mx-auto px-4 md:px-6;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html, body { overflow-x: hidden; }
+body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Typographie fluide et premium */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@layer utilities {
+  .animate-marquee-left {
+    animation: marquee-left 10s linear infinite;
+  }
+  .animate-marquee-right {
+    animation: marquee-right 10s linear infinite;
+  }
+
+  @media (min-width: 768px) {
+    .animate-marquee-left {
+      animation: marquee-left 14s linear infinite;
+    }
+    .animate-marquee-right {
+      animation: marquee-right 14s linear infinite;
+    }
+  }
+}
