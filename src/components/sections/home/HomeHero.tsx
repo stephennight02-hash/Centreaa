@@ -44,8 +44,8 @@ export function HomeHero() {
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover"
               >
-                {/* Ajout de ?v=2 pour forcer le navigateur à recharger la nouvelle vidéo */}
-                <source src="/videos/download.mp4?v=2" type="video/mp4" />
+                {/* Utilisation de la nouvelle vidéo fondaccueil.mp4 avec cache buster */}
+                <source src={`/videos/fondaccueil.mp4?v=3`} type="video/mp4" />
               </video>
               {/* Overlay pour assombrir la vidéo et assurer la lisibilité */}
               <div className="absolute inset-0 bg-black/70 backdrop-blur-[4px]" />
