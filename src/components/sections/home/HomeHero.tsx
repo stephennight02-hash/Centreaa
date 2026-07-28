@@ -28,27 +28,28 @@ export function HomeHero() {
       {/* BACKGROUNDS CONDITIONNELS SELON LA MAQUETTE */}
       <AnimatePresence mode="wait">
         {variant === "video" ? (
-          <motion.div
-            key="bg-video"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0 z-0"
-            style={{ position: "fixed" }} // Le fond vidéo reste fixe pendant le scroll de toute la page
-          >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
+            <motion.div
+              key="bg-video"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0 z-[-1] pointer-events-none"
+              style={{ position: "fixed", height: "100dvh" }} // Fixe sur tout l'écran
             >
-              <source src="/videos/download.mp4" type="video/mp4" />
-            </video>
-            {/* Overlay plus sombre et flou pour un contraste maximal avec le texte */}
-            <div className="absolute inset-0 bg-black/80 backdrop-blur-[4px]" />
-          </motion.div>
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                {/* Ajout de ?v=2 pour forcer le navigateur à recharger la nouvelle vidéo */}
+                <source src="/videos/download.mp4?v=2" type="video/mp4" />
+              </video>
+              {/* Overlay pour assombrir la vidéo et assurer la lisibilité */}
+              <div className="absolute inset-0 bg-black/70 backdrop-blur-[4px]" />
+            </motion.div>
         ) : (
           <motion.div
             key="bg-normal"
