@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { SiteLayout } from "@/components/layout/SiteLayout";
+import { MaquetteProvider } from "@/components/maquette/MaquetteProvider";
+import { MaquetteSwitcher } from "@/components/maquette/MaquetteSwitcher";
 import { siteConfig } from "@/config/site";
 
 const geistSans = Geist({
@@ -75,31 +77,25 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Lien d'accessibilité "Skip to content" pour la navigation clavier */}
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground focus:shadow-lg focus:outline-none"
-          >
-            Aller au contenu principal
-          </a>
+          <MaquetteProvider>
+            {/* Lien d'accessibilité "Skip to content" pour la navigation clavier */}
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground focus:shadow-lg focus:outline-none"
+            >
+              Aller au contenu principal
+            </a>
 
-          {/**
-           * Configuration du layout global par défaut.
-           *
-           * – header="transparent" : discret au chargement, glassmorphism au scroll.
-           * – footer="default"     : footer complet 4 colonnes.
-           * – scrollBehavior="floating" : nav flottante compacte quand le header se masque.
-           *
-           * Les groupes de routes (app/(interior)/, app/(immersive)/, etc.)
-           * peuvent surcharger chaque prop indépendamment via leur propre layout.tsx.
-           */}
-          <SiteLayout
-            header="transparent"
-            footer="default"
-            scrollBehavior="floating"
-          >
-            {children}
-          </SiteLayout>
+            <SiteLayout
+              header="transparent"
+              footer="default"
+              scrollBehavior="floating"
+            >
+              {children}
+            </SiteLayout>
+
+            <MaquetteSwitcher />
+          </MaquetteProvider>
         </ThemeProvider>
       </body>
     </html>

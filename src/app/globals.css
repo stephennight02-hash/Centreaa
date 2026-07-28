@@ -104,6 +104,74 @@
   --radius: 0.75rem;
 }
 
+/* ========================================
+   MAQUETTE CLAIR (Plus de blanc que de noir)
+   ======================================== */
+[data-maquette="clair"] {
+  --background: oklch(0.97 0.003 90);
+  --foreground: oklch(0.15 0 0);
+  
+  --card: oklch(0.15 0 0);
+  --card-foreground: oklch(0.97 0.003 90);
+  
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0 0);
+  
+  --primary: oklch(0.50 0.16 35);
+  --primary-foreground: oklch(0.985 0.005 90);
+  
+  --secondary: oklch(0.92 0 0);
+  --secondary-foreground: oklch(0.15 0 0);
+  
+  --muted: oklch(0.93 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  
+  --accent: oklch(0.93 0 0);
+  --accent-foreground: oklch(0.15 0 0);
+  
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.50 0.16 35);
+}
+
+/* ========================================
+   CUSTOM DESIGN OVERRIDES PER MAQUETTE
+   ======================================== */
+
+/* VIDEO: Effet Glassmorphism global pour voir la vidéo à travers toutes les sections */
+[data-maquette="video"] .bg-background {
+  background-color: oklch(0.145 0 0 / 0.5) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+[data-maquette="video"] .bg-foreground\/5 {
+  background-color: oklch(0.985 0.005 90 / 0.08) !important;
+  backdrop-filter: blur(10px);
+  border-color: oklch(0.985 0.005 90 / 0.15) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+[data-maquette="video"] .border-foreground\/10 {
+  border-color: oklch(0.985 0.005 90 / 0.1) !important;
+}
+[data-maquette="video"] .border-foreground\/20 {
+  border-color: oklch(0.985 0.005 90 / 0.2) !important;
+}
+
+/* CLAIR: Design doux, clean, ombres portées et bords adoucis */
+[data-maquette="clair"] .bg-background {
+  background-color: oklch(0.97 0.003 90) !important;
+}
+[data-maquette="clair"] .bg-foreground\/5 {
+  background-color: #ffffff !important;
+  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04) !important;
+  border-radius: 1.5rem;
+}
+[data-maquette="clair"] .border-foreground\/10,
+[data-maquette="clair"] .border-foreground\/20 {
+  border-color: rgba(0,0,0,0.05) !important;
+}
+
 
 
 @layer components {
