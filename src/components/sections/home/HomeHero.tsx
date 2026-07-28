@@ -46,8 +46,8 @@ export function HomeHero() {
             >
               <source src="/videos/download.mp4" type="video/mp4" />
             </video>
-            {/* Overlay pour assombrir la vidéo et assurer la lisibilité */}
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+            {/* Overlay plus sombre et flou pour un contraste maximal avec le texte */}
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-[4px]" />
           </motion.div>
         ) : (
           <motion.div
