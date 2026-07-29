@@ -23,7 +23,7 @@ export function HomeHero() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full min-h-[100svh] flex flex-col justify-center overflow-hidden transition-colors duration-700"
+      className="relative w-full min-h-[100svh] flex flex-col justify-center transition-colors duration-700"
     >
       {/* BACKGROUNDS CONDITIONNELS SELON LA MAQUETTE */}
       <AnimatePresence mode="wait">
@@ -34,8 +34,7 @@ export function HomeHero() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8 }}
-              className="absolute inset-0 z-[-1] pointer-events-none"
-              style={{ position: "fixed", height: "100dvh" }} // Fixe sur tout l'écran
+              className="fixed top-0 left-0 w-full h-[100dvh] z-[-1] pointer-events-none"
             >
               <video
                 autoPlay
@@ -57,7 +56,7 @@ export function HomeHero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 z-0 overflow-hidden"
           >
             <div className="absolute inset-0 pointer-events-none opacity-[0.05] dark:opacity-[0.07]" style={{
               backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
@@ -123,7 +122,7 @@ export function HomeHero() {
               L'excellence d'un accompagnement pluridisciplinaire, pensé pour votre équilibre global et vos performances sportives.
             </p>
             <Link 
-              href="/prise-de-rendez-vous"
+              href="/equipe"
               className="group flex items-center gap-4 text-base font-semibold tracking-widest uppercase text-foreground hover:text-primary transition-colors w-fit mt-4"
             >
               Découvrir

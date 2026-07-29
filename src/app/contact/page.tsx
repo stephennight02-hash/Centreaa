@@ -6,13 +6,7 @@ import { Section } from "@/components/layout/Section";
 import { MapPin, Mail, Phone, Clock, Send, CheckCircle } from "lucide-react";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
+  const [submitted, setSubmitted] = useState<string | false>(false);
 
   return (
     <main className="w-full bg-background">
@@ -125,95 +119,95 @@ export default function ContactPage() {
               </motion.div>
             </motion.div>
 
-            {/* Formulaire */}
+            {/* Mini Chatbot (FAQ) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="h-full flex flex-col"
             >
-              <div className="rounded-3xl border border-foreground/10 bg-foreground/5 p-8 md:p-10">
-                <h2 className="text-2xl md:text-3xl font-medium mb-2 text-foreground">
-                  Envoyez-nous un message
-                </h2>
-                <p className="text-foreground/40 font-light mb-8">
-                  [Texte maquette expliquant le formulaire]
-                </p>
+              <div className="flex-1 rounded-3xl border border-foreground/10 bg-foreground/5 p-6 flex flex-col overflow-hidden max-h-[600px]">
+                {/* Chat Header */}
+                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-foreground/10 shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="w-6 h-6 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-medium text-foreground">
+                      Assistant Centreaa
+                    </h2>
+                    <p className="text-sm text-foreground/50 font-light flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                      En ligne
+                    </p>
+                  </div>
+                </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-xs font-semibold tracking-widest uppercase text-foreground/50 mb-2">
-                        Nom
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="[Votre nom]"
-                        className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary transition-colors text-base"
-                      />
+                {/* Messages Area */}
+                <div className="flex-1 overflow-y-auto space-y-4 pr-2 mb-6 scrollbar-thin scrollbar-thumb-foreground/10">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <CheckCircle className="w-4 h-4 text-primary" />
                     </div>
-                    <div>
-                      <label className="block text-xs font-semibold tracking-widest uppercase text-foreground/50 mb-2">
-                        Prénom
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="[Votre prénom]"
-                        className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary transition-colors text-base"
-                      />
+                    <div className="bg-background rounded-2xl rounded-tl-sm p-4 border border-foreground/10 text-sm md:text-base">
+                      Bonjour ! 👋 Je suis l'assistant virtuel de Centreaa. Comment puis-je vous aider aujourd'hui ?
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold tracking-widest uppercase text-foreground/50 mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="[votre@email.com]"
-                      className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary transition-colors text-base"
-                    />
-                  </div>
+                  {submitted && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-start gap-3 flex-row-reverse"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-foreground/20 flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-xs">Vous</span>
+                      </div>
+                      <div className="bg-primary text-primary-foreground rounded-2xl rounded-tr-sm p-4 text-sm md:text-base max-w-[85%]">
+                        {submitted}
+                      </div>
+                    </motion.div>
+                  )}
 
-                  <div>
-                    <label className="block text-xs font-semibold tracking-widest uppercase text-foreground/50 mb-2">
-                      Sujet
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="[Sujet de votre message]"
-                      className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary transition-colors text-base"
-                    />
-                  </div>
+                  {submitted && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="flex items-start gap-3"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="bg-background rounded-2xl rounded-tl-sm p-4 border border-foreground/10 text-sm md:text-base">
+                        {submitted === "Quels sont vos tarifs ?" 
+                          ? "Nos tarifs varient selon la spécialité (Kiné, Nutrition, Maderothérapie...). Le plus simple est de consulter notre page Prestations ou de nous appeler directement !"
+                          : submitted === "Où êtes-vous situés ?"
+                          ? "Nous sommes situés au Rue du Chemin Vert 29, Lodelinsart. Un parking est à votre disposition."
+                          : "Vous pouvez prendre rendez-vous directement via notre plateforme en ligne 24h/24 !"}
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold tracking-widest uppercase text-foreground/50 mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      rows={5}
-                      placeholder="[Votre message...]"
-                      className="w-full bg-background border border-foreground/10 rounded-xl px-4 py-3 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary transition-colors text-base resize-none"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full flex items-center justify-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-full text-base font-semibold uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg"
-                  >
-                    {submitted ? (
-                      <>
-                        <CheckCircle className="w-5 h-5" />
-                        Envoyé !
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Envoyer
-                      </>
-                    )}
-                  </button>
-                </form>
+                {/* FAQ Buttons */}
+                <div className="shrink-0 flex flex-col gap-2">
+                  <p className="text-xs text-foreground/40 uppercase tracking-widest font-semibold mb-2 ml-2">Questions fréquentes</p>
+                  {[
+                    "Comment prendre rendez-vous ?",
+                    "Quels sont vos tarifs ?",
+                    "Où êtes-vous situés ?"
+                  ].map((q) => (
+                    <button
+                      key={q}
+                      onClick={() => setSubmitted(q as any)}
+                      className="text-left w-full bg-background border border-foreground/10 hover:border-primary hover:text-primary rounded-xl px-4 py-3 text-sm transition-colors"
+                    >
+                      {q}
+                    </button>
+                  ))}
+                </div>
               </div>
             </motion.div>
 

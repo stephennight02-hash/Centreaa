@@ -223,18 +223,18 @@ body {
 
 @layer utilities {
   .animate-marquee-left {
-    animation: marquee-left 10s linear infinite;
+    animation: marquee-left 30s linear infinite;
   }
   .animate-marquee-right {
-    animation: marquee-right 10s linear infinite;
+    animation: marquee-right 30s linear infinite;
   }
 
   @media (min-width: 768px) {
     .animate-marquee-left {
-      animation: marquee-left 14s linear infinite;
+      animation: marquee-left 40s linear infinite;
     }
     .animate-marquee-right {
-      animation: marquee-right 14s linear infinite;
+      animation: marquee-right 40s linear infinite;
     }
   }
 }
